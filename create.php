@@ -37,7 +37,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $hour = $input_hour;
     }
-    echo $stmt;
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an insert statement
@@ -62,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
         // Close statement
-        mysqli_stmt_close($stmt);
+        //mysqli_stmt_close($stmt);
     }
     
     // Close connection
