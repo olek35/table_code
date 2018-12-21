@@ -25,6 +25,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $day_of_week = $input_day_of_week;
     }
+
+    // aa
     
     // Validate hour
     $input_hour = trim($_POST["hour"]);
