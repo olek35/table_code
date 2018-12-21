@@ -40,12 +40,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO group (name, day_of_week, hour) VALUES (?, ?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
+        $sql = "INSERT INTO `group`(`name`, `day_of_week`, `hour`) VALUES (?, ?, ?)";
+        if($stmt = mysqli_prepare($link, $sql) or die(mysqli_error($link))){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_day_of_week, $param_hour);
-            
             // Set parameters
             $param_name = $name;
             $param_day_of_week = $day_of_week;
@@ -53,6 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+                echo "as";
                 // Records created successfully. Redirect to landing page
                 header("location: index.php");
                 exit();
@@ -60,8 +59,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Something went wrong. Please try again later.";
             }
         }
+       
         // Close statement
-        //mysqli_stmt_close($stmt);
+        mysqli_stmt_close($stmt);
     }
     
     // Close connection
