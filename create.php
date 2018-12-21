@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $hour = $input_hour;
     }
-    
+    echo $stmt;
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an insert statement
@@ -61,7 +61,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Something went wrong. Please try again later.";
             }
         }
-         
         // Close statement
         mysqli_stmt_close($stmt);
     }
@@ -90,22 +89,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Create Record</h2>
+                        <h2>Dodaj grupę</h2>
                     </div>
                     <p>Please fill this form and submit to add lista_obecnosci record to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                            <label>Name</label>
+                            <label>Nazwa</label>
                             <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                             <span class="help-block"><?php echo $name_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($day_of_week_err)) ? 'has-error' : ''; ?>">
-                            <label>day_of_week</label>
+                            <label>Dzień tygodnia</label>
                             <textarea name="day_of_week" class="form-control"><?php echo $day_of_week; ?></textarea>
                             <span class="help-block"><?php echo $day_of_week_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($hour_err)) ? 'has-error' : ''; ?>">
-                            <label>hour</label>
+                            <label>Godzina</label>
                             <input type="text" name="hour" class="form-control" value="<?php echo $hour; ?>">
                             <span class="help-block"><?php echo $hour_err;?></span>
                         </div>

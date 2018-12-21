@@ -67,18 +67,18 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h1>View Record</h1>
+                        <h1>Pokaż szczegóły grupy</h1>
                     </div>
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Nazwa</label>
                         <p class="form-control-static"><?php echo $row["name"]; ?></p>
                     </div>
                     <div class="form-group">
-                        <label>day_of_week</label>
+                        <label>Dzień tygodnia</label>
                         <p class="form-control-static"><?php echo $row["day_of_week"]; ?></p>
                     </div>
                     <div class="form-group">
-                        <label>hour</label>
+                        <label>Godzina</label>
                         <p class="form-control-static"><?php echo $row["hour"]; ?></p>
                     </div>
                     <p><a href="index.php" class="btn btn-primary">Back</a></p>
