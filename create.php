@@ -20,14 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //
     // Validate day_of_week
     $input_day_of_week = trim($_POST["day_of_week"]);
-    if(empty($input_day_of_week)){
-        $day_of_week_err = "Please enter an day_of_week.";     
-    } else{
-        $day_of_week = $input_day_of_week;
-    }
-
-    // aa
-    
+    $day_of_week = $input_day_of_week;
     // Validate hour
     $input_hour = trim($_POST["hour"]);
     if(empty($input_hour)){
@@ -99,15 +92,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="form-group <?php echo (!empty($day_of_week_err)) ? 'has-error' : ''; ?>">
                             <label>Dzień tygodnia</label>
-                            <select>
-                                <option value="day_of_week">poniedziałek</option>
-                                <option value="day_of_week">wtorek</option>
-                                <option value="day_of_week">środa</option>
-                                <option value="day_of_week">czwartek</option>
-                                <option value="day_of_week">piątek</option>
-                                <?php echo $day_of_week; ?>
+                            <span class="help-block"></span>
+                            <select name="day_of_week" class="form-control"><?php echo $day_of_week; ?>
+                                <option value="poniedziałek">poniedziałek</option>
+                                <option value="wtorek">wtorek</option>
+                                <option value="środa">środa</option>
+                                <option value="czwartek">czwartek</option>
+                                <option value="piątek">piątek</option>
                             </select>
-                            <span class="help-block"><?php echo $day_of_week_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($hour_err)) ? 'has-error' : ''; ?>">
                             <label>Godzina</label>
