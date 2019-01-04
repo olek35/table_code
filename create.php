@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $name = $input_name;
     }
-    
+    //
     // Validate day_of_week
     $input_day_of_week = trim($_POST["day_of_week"]);
     if(empty($input_day_of_week)){
@@ -40,10 +40,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO `group`(`name`, `day_of_week`, `hour`) VALUES (?, ?, ?)";
-        if($stmt = mysqli_prepare($link, $sql) or die(mysqli_error($link))){
+        $sql = "INSERT INTO `group` (name, day_of_week, hour) VALUES (?, ?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_day_of_week, $param_hour);
+            
             // Set parameters
             $param_name = $name;
             $param_day_of_week = $day_of_week;
@@ -51,7 +53,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                echo "as";
                 // Records created successfully. Redirect to landing page
                 header("location: index.php");
                 exit();
@@ -59,8 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Something went wrong. Please try again later.";
             }
         }
-       
-        // Close statement
+            // Close statement
         mysqli_stmt_close($stmt);
     }
     
@@ -99,7 +99,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="form-group <?php echo (!empty($day_of_week_err)) ? 'has-error' : ''; ?>">
                             <label>Dzień tygodnia</label>
-                            <textarea name="day_of_week" class="form-control"><?php echo $day_of_week; ?></textarea>
+                            <select>
+                                <option value="day_of_week">poniedziałek</option>
+                                <option value="day_of_week">wtorek</option>
+                                <option value="day_of_week">środa</option>
+                                <option value="day_of_week">czwartek</option>
+                                <option value="day_of_week">piątek</option>
+                                <?php echo $day_of_week; ?>
+                            </select>
                             <span class="help-block"><?php echo $day_of_week_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($hour_err)) ? 'has-error' : ''; ?>">
