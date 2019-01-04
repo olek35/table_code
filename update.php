@@ -23,26 +23,17 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
     // Validate day_of_week
     $input_day_of_week = trim($_POST["day_of_week"]);
-    if(empty($input_day_of_week)){
-        $day_of_week_err = "Please enter an day_of_week.";     
-    } else{
-        $day_of_week = $input_day_of_week;
-    }
+    $day_of_week = $input_day_of_week;
+
     
     // Validate hour
     $input_hour = trim($_POST["hour"]);
-    if(empty($input_hour)){
-        $hour_err = "Please enter the hour amount.";     
-    } elseif(!ctype_digit($input_hour)){
-        $hour_err = "Please enter a positive integer value.";
-    } else{
-        $hour = $input_hour;
-    }
+    $hour = $input_hour;
     
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an update statement
-        $sql = "UPDATE group SET name=?, day_of_week=?, hour=? WHERE id=?";
+        $sql = "UPDATE `group` SET name=?, day_of_week=?, hour=? WHERE id=?";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -71,37 +62,29 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Close connection
     mysqli_close($link);
 } else{
-    // Check existence of id parameter before processing further
+
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         // Get URL parameter
         $id =  trim($_GET["id"]);
         
         // Prepare a select statement
-        $sql = "SELECT * FROM group WHERE id = ?";
+        $sql = "SELECT * FROM `group` WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
             
             // Set parameters
             $param_id = $id;
-            
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 $result = mysqli_stmt_get_result($stmt);
-    
-                if(mysqli_num_rows($result) == 1){
-                    /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
-                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     
                     // Retrieve individual field value
-                    $name = $row["name"];
-                    $day_of_week = $row["day_of_week"];
-                    $hour = $row["hour"];
-                } else{
-                    // URL doesn't contain valid id. Redirect to error page
-                    header("location: error.php");
-                    exit();
-                }
+                $name = $row["name"];
+                $day_of_week = $row["day_of_week"];
+                $hour = $row["hour"];
                 
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -140,24 +123,30 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>Update Record</h2>
+                        <h2>Zmień dane grupy</h2>
                     </div>
-                    <p>Please edit the input values and submit to update the record.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                    <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
                         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                            <label>Name</label>
+                            <label>Nazwa</label>
                             <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                             <span class="help-block"><?php echo $name_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($day_of_week_err)) ? 'has-error' : ''; ?>">
-                            <label>day_of_week</label>
-                            <textarea name="day_of_week" class="form-control"><?php echo $day_of_week; ?></textarea>
-                            <span class="help-block"><?php echo $day_of_week_err;?></span>
+                            <label>Dzień tygodnia</label>
+                            <span class="help-block"></span>
+                            <select name="day_of_week" class="form-control"><?php echo $day_of_week; ?>
+                                <option value="poniedziałek">poniedziałek</option>
+                                <option value="wtorek">wtorek</option>
+                                <option value="środa">środa</option>
+                                <option value="czwartek">czwartek</option>
+                                <option value="piątek">piątek</option>
+                            </select>
                         </div>
                         <div class="form-group <?php echo (!empty($hour_err)) ? 'has-error' : ''; ?>">
-                            <label>hour</label>
-                            <input type="text" name="hour" class="form-control" value="<?php echo $hour; ?>">
-                            <span class="help-block"><?php echo $hour_err;?></span>
+                            <label>Godzina</label>
+                            <input type="time" name="hour" class="form-control" value="<?php echo $hour; ?>">
+                            <span class="help-block"></span>
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">

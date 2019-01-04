@@ -5,7 +5,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     require_once "config.php";
     
     // Prepare a select statement
-    $sql = "SELECT * FROM group WHERE id = ?";
+    $sql = "SELECT * FROM `group` WHERE id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -67,7 +67,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h1>Pokaż szczegóły grupy</h1>
+                        <h1>Szczegóły grupy</h1>
                     </div>
                     <div class="form-group">
                         <label>Nazwa</label>

@@ -11,9 +11,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
-        $name_err = "Please enter a name.";
+        $name_err = "Wpisz nazwę.";
     } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
+        $name_err = "Wpisz poprawną nazwę.";
     } else{
         $name = $input_name;
     }
@@ -23,13 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $day_of_week = $input_day_of_week;
     // Validate hour
     $input_hour = trim($_POST["hour"]);
-    if(empty($input_hour)){
-        $hour_err = "Please enter the hour amount.";     
-    } elseif(!ctype_digit($input_hour)){
-        $hour_err = "Please enter a positive integer value.";
-    } else{
-        $hour = $input_hour;
-    }
+    $hour = $input_hour;
     // Check input errors before inserting in database
     if(empty($name_err) && empty($day_of_week_err) && empty($hour_err)){
         // Prepare an insert statement
@@ -102,8 +96,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="form-group <?php echo (!empty($hour_err)) ? 'has-error' : ''; ?>">
                             <label>Godzina</label>
-                            <input type="text" name="hour" class="form-control" value="<?php echo $hour; ?>">
-                            <span class="help-block"><?php echo $hour_err;?></span>
+                            <input type="time" name="hour" class="form-control" value="<?php echo $hour; ?>">
+                            <span class="help-block"></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="index.php" class="btn btn-default">Anuluj</a>
