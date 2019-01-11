@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Uczniowie</h2>
+                        <h2 class="pull-left">Uczniowie - grupa </h2>
                         <a href="create.php" class="btn btn-success pull-right">Sprawdź obecność</a>
                     </div>
                     <?php
@@ -38,7 +38,7 @@
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM lista_obecnosci.student";
+                    $sql = "SELECT * FROM lista_obecnosci.student WHERE group_id = 1";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
@@ -55,8 +55,8 @@
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
-                                        echo "<td>" . $row['day_of_week'] . "</td>";
-                                        echo "<td>" . $row['hour'] . "</td>";
+                                        echo "<td>" . $row['presences'] . "</td>";
+                                        echo "<td>" . $row['absences'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                             echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
