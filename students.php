@@ -30,24 +30,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Grupy</h2>
-                        <a href="create.php" class="btn btn-success pull-right">Dodaj nowa grupe</a>
+                        <h2 class="pull-left">Uczniowie</h2>
+                        <a href="create.php" class="btn btn-success pull-right">Sprawdź obecność</a>
                     </div>
                     <?php
                     // Include config file
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM lista_obecnosci.group";
+                    $sql = "SELECT * FROM lista_obecnosci.student";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>id</th>";
-                                        echo "<th>Nazwa</th>";
-                                        echo "<th>Dzień tygodnia</th>";
-                                        echo "<th>Godzina</th>";
+                                        echo "<th>Imię i nazwisko</th>";
+                                        echo "<th>Obecności</th>";
+                                        echo "<th>Nieobecności</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -61,7 +61,7 @@
                                             echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                             echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                            echo "<a href='students.php?id=". $row['id'] ."' title='' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='add.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -70,7 +70,7 @@
                             // Free result set
                             mysqli_free_result($result);
                         } else{
-                            echo "<p class='lead'><em>Nie znaleziono grup.</em></p>";
+                            echo "<p class='lead'><em>Nie znaleziono uczniów.</em></p>";
                         }
                     } else{
                         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
