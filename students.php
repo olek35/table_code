@@ -32,6 +32,7 @@
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Uczniowie - grupa </h2>
                         <a href="create.php" class="btn btn-success pull-right">Sprawdź obecność</a>
+                        <a href="create2.php" class="btn btn-success pull-right">dodaj ucznia</a>
                     </div>
                     <?php
                     // Include config file
@@ -45,7 +46,8 @@
                                 echo "<thead>";
                                     echo "<tr>";
                                         echo "<th>id</th>";
-                                        echo "<th>Imię i nazwisko</th>";
+                                        echo "<th>Imię</th>";
+                                        echo "<th>Nazwisko</th>";
                                         echo "<th>Obecności</th>";
                                         echo "<th>Nieobecności</th>";
                                     echo "</tr>";
@@ -55,13 +57,15 @@
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td>" . $row['last_name'] . "</td>";
                                         echo "<td>" . $row['presences'] . "</td>";
                                         echo "<td>" . $row['absences'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='update2.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                            echo "<a href='add.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='add.php?id=". $row['id'] ."' title='dodaj uczniow' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                            
                                         echo "</td>";
                                     echo "</tr>";
                                 }
