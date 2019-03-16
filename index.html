@@ -1,0 +1,137 @@
+<html>
+    <head> 
+            <a href="rt.html">odsylacz</a>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+           
+            <button id="jj">niech dzieje sie magia</button>
+            <div style="background:#da7f08;height:100px;width:100px;position:absolute;"></div>
+            <img id="kkl" src="ww.jpg" >
+
+            <button onclick="goleft()">ju szel not pas </button>           
+             <button onclick="goright()">ju szel not pas ale odwrotnie</button>
+            <div style="background:#98bf21;height:100px;width:100px;position:absolute;">
+            <p id="jh">dsf</p></div>
+
+        <h1 document:position > strona</h1>
+        <button id="roi">mahia</button>
+        <div id="kd">
+            
+               <p>kokoko</p> 
+            <p> Grawitacja (ciążenie powszechne) – jedno z czterech oddziaływań podstawowych, będące zjawiskiem naturalnym polegającym na tym, że wszystkie obiekty posiadające masę oddziałują na siebie, wzajemnie przyciągając się.
+            
+                Upuszczenie młotka i piór: astronauta David Scott (z misji Apollo 15) na Księżycu przedstawiający legendarny eksperyment Galileusza
+                We współczesnej fizyce grawitację opisuje ogólna teoria względności.
+                 Oddziaływanie grawitacyjne jest w niej skutkiem zakrzywienia czasoprzestrzeni przez różne formy materii.
+                  W ramach fizyki klasycznej grawitacja jest opisana prawem powszechnego ciążenia sformułowanym przez Isaaca Newtona.</p>
+        </div>
+        <div id="kg">
+<img  src="zdje.jpg" style="width: 200px; height: 200px">
+        </div>
+        <h2>rok</h2>
+
+        <div id="kol">
+<p>jsbdfkjhsabdlkh</p>
+        </div>
+        <script>
+
+$(document).ready(function(){
+  $("#jj").click(function(){
+    $("div").animate({
+      left: '250px',
+      height: '+=150px',
+      width: '+=150px'
+    });
+  });
+});
+
+
+function goright() {
+    $("h1").css("right", "500px");
+}
+function goleft() {
+    $("h1").css("left", "0px");
+}
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#kkl").attr("src", "ds.jpg")
+    }, 2000);
+})
+
+
+
+
+         $(document).ready(function () {
+            $("#kd").click(function () {
+                $(this).hide();
+            });
+        
+
+
+            $("#kol").click(function () {
+                $("#kol").append("<p>kokokokkokokok</p>");
+                $("p").css("background", "red");
+            });
+        });
+        $("h2").click(function(){
+  alert("no i git  " + $("#test").text());
+});
+
+
+
+$("img").click(function() {
+    $(this).css("width", "300px");
+    $(this).css("height", "300px");
+});
+        $("h1").click(function() {
+        for(i = 0; i < 20; i++) {
+            setTimeout(function() {
+                $("h1").append("<p>bdckjahdsbvlkhsbalkbasdlkhb</p>");
+            }, i * 500);
+        }
+    });
+
+    $(document).ready(function(){
+  $("button").click(function(){
+    $("div").animate({left: '500px'});
+  });
+});
+
+
+$(document).ready(function(){
+  $("#roi").click(function(){
+    $("p").toggle();
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        </script>
+    </body>
+</html>

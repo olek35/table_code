@@ -1,0 +1,47 @@
+<html>
+    <titile></titile>
+    <head>
+            <a href="dd.html">odsylacz</a>
+            <meta charset="utf-8">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+            <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+
+            <button id="ooo">magic</button><br><br>
+
+            <div id="div1" style="width:80px;height:80px;background-color:red;"></div>
+            <br>
+            <div id="div2" style="width:80px;height:80px;background-color:green;"></div>
+            <br>
+            <div id="div3" style="width:80px;height:80px;background-color:blue;"></div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+                $(document).ready(function(){
+                    $("#ooo").click(function(){
+                      $("#div1").fadeToggle();
+                      $("#div2").fadeToggle("slow");
+                      $("#div3").fadeToggle(3000);
+                    });
+                  });
+
+        </script>
+    </body>
+</html>

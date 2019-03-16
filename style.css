@@ -1,0 +1,14 @@
+h1 {
+    text-align:center;
+    
+    width: 100%;
+    
+}
+.jh {
+    text-align: center;
+}
+ .kik {
+    display: grid;
+    grid-template-columns: 20% 20% 20% ;
+    grid-template-rows: 20% 20% 20% ; 
+ }
